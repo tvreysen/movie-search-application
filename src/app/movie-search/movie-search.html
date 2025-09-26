@@ -1,15 +1,15 @@
 <h2>Search for a movie!</h2>
 <div class="form-group">
   <form (ngSubmit)="getSearchResults()">
-    <input 
-      type="text" 
-      name="query" 
+    <input
+      type="text"
+      name="query"
       [(ngModel)]="query"
-      placeholder="Enter movie title" 
-      required 
+      placeholder="Enter movie title"
+      required
       class="search-input"
     />
-    <button type="submit" class="search-button">Search</button>
+    <button type="submit" class="buttongreen">Search</button>
   </form>
 </div>
 
@@ -21,6 +21,10 @@
       <p><strong>Year:</strong> {{ movie.Year }}</p>
       <p><strong>Genre:</strong> {{ movie.Genre }}</p>
       <p><strong>Type:</strong> {{ movie.Type }}</p>
+      <p><strong>Release Date:</strong> {{ movie.Released }}</p>
+      <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+      <p><strong>Director:</strong> {{ movie.Director }}</p>
+      <p><strong>Plot:</strong> {{ movie.Plot }}</p>
     </div>
   </div>
 </div>

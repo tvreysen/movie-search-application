@@ -10,7 +10,12 @@ interface Movie {
   Genre: string;
   Type: string;
   Poster: string;
-  imdbID: string;
+  Released: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  BoxOffice: string;
 }
 
 @Component({
