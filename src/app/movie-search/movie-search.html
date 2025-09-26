@@ -1,1 +1,29 @@
-<p>movie-search works!</p>
+<h2>Search for a movie!</h2>
+<div class="form-group">
+  <form (ngSubmit)="getSearchResults()">
+    <input 
+      type="text" 
+      name="query" 
+      [(ngModel)]="query"
+      placeholder="Enter movie title" 
+      required 
+      class="search-input"
+    />
+    <button type="submit" class="search-button">Search</button>
+  </form>
+</div>
+
+<div class="movie-results" *ngIf="movies$ | async as movies">
+  <div *ngFor="let movie of movies" class="movie-item">
+    <img [src]="movie.Poster" [alt]="movie.Title" class="movie-poster">
+    <div class="movie-details">
+      <h3>{{ movie.Title }}</h3>
+      <p><strong>Year:</strong> {{ movie.Year }}</p>
+      <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+      <p><strong>Type:</strong> {{ movie.Type }}</p>
+    </div>
+  </div>
+</div>
+
+
+
