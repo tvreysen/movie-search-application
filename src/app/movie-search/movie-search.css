@@ -4,6 +4,7 @@
     }
 
 :host {
+  background-color: #067bf0;
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
     --french-violet: oklch(47.66% 0.246 305.88);
@@ -278,7 +279,7 @@ ul.topnav li a:hover {
 }
 
 .movie-item {
-  background: white;
+  background: lightblue;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;

@@ -28,7 +28,7 @@ export class MovieService {
 
   constructor(private readonly http: HttpClient) { }
 
-  searchMovie(searchQuery: string): Observable<Movie[]> {
+  searchMovie(searchQuery: string): Observable<any> {
     return this.http.get(`https://omdbapi.com/?apikey=${this.API_KEY}&s=${searchQuery}`)
       .pipe(
         map((response: any) => response.Search || []),
@@ -37,7 +37,7 @@ export class MovieService {
             return of([]);
           }
 
-          const detailRequests = searchResults.slice(0, 10).map(movie =>
+          const detailRequests = searchResults.map(movie =>
             this.getMovieInformation(movie.imdbID)
           );
 

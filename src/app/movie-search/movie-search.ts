@@ -16,6 +16,7 @@ interface Movie {
   Actors: string;
   Plot: string;
   BoxOffice: string;
+  imdbID: string;
 }
 
 @Component({

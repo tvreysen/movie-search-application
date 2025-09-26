@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MovieSearch } from './movie-search/movie-search';
-import { Home } from './home/home';
+import { Home } from './home/home'
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

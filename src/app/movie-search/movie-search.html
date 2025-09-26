@@ -1,4 +1,5 @@
-<h2>Search for a movie!</h2>
+<div>
+  <h2>Search for a movie!</h2>
 <div class="form-group">
   <form (ngSubmit)="getSearchResults()">
     <input
@@ -13,21 +14,27 @@
   </form>
 </div>
 
-<div class="movie-results" *ngIf="movies$ | async as movies">
-  <div *ngFor="let movie of movies" class="movie-item">
-    <img [src]="movie.Poster" [alt]="movie.Title" class="movie-poster">
-    <div class="movie-details">
-      <h3>{{ movie.Title }}</h3>
-      <p><strong>Year:</strong> {{ movie.Year }}</p>
-      <p><strong>Genre:</strong> {{ movie.Genre }}</p>
-      <p><strong>Type:</strong> {{ movie.Type }}</p>
-      <p><strong>Release Date:</strong> {{ movie.Released }}</p>
-      <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
-      <p><strong>Director:</strong> {{ movie.Director }}</p>
-      <p><strong>Plot:</strong> {{ movie.Plot }}</p>
-    </div>
+@if (movies$ | async; as movies) {
+  <div class="movie-results">
+    @for (movie of movies; track movie.imdbID) {
+      <div class="movie-item">
+        <img [src]="movie.Poster" [alt]="movie.Title" class="movie-poster">
+        <div class="movie-details">
+          <h3>{{ movie.Title }}</h3>
+          <p><strong>Year:</strong> {{ movie.Year }}</p>
+          <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+          <p><strong>Type:</strong> {{ movie.Type }}</p>
+          <p><strong>Release Date:</strong> {{ movie.Released }}</p>
+          <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+          <p><strong>Director:</strong> {{ movie.Director }}</p>
+          <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+        </div>
+      </div>
+    }
   </div>
+}
 </div>
+
 
 
 
