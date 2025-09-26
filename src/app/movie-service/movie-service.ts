@@ -37,7 +37,6 @@ export class MovieService {
             return of([]);
           }
 
-          // Get detailed information for each movie
           const detailRequests = searchResults.slice(0, 10).map(movie =>
             this.getMovieInformation(movie.imdbID)
           );
