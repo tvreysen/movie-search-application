@@ -28,22 +28,28 @@ export class MovieService {
 
   constructor(private readonly http: HttpClient) { }
 
-  searchMovie(searchQuery: string): Observable<any> {
-    return this.http.get(`https://omdbapi.com/?apikey=${this.API_KEY}&s=${searchQuery}`)
-      .pipe(
-        map((response: any) => response.Search || []),
-        switchMap((searchResults: any[]) => {
-          if (searchResults.length === 0) {
-            return of([]);
-          }
+  async searchMovie(searchQuery: string): Promise<any[]> {
+    try {
+      // First, get the search results
+      const searchResponse: any = await this.http.get(`https://omdbapi.com/?apikey=${this.API_KEY}&s=${searchQuery}`).toPromise();
+      const searchResults = searchResponse.Search || [];
 
-          const detailRequests = searchResults.map(movie =>
-            this.getMovieInformation(movie.imdbID)
-          );
+      if (searchResults.length === 0) {
+        return [];
+      }
 
-          return forkJoin(detailRequests);
-        })
-      );
+      // Then, get detailed information for each movie
+      const detailedMovies = [];
+      for (let movie of searchResults) {
+        const detailedMovie = await this.getMovieInformation(movie.imdbID).toPromise();
+        detailedMovies.push(detailedMovie);
+      }
+
+      return detailedMovies;
+    } catch (error) {
+      console.error('Error searching movies:', error);
+      return [];
+    }
   }
 
   getMovieInformation(imdbId: string): Observable<any> {

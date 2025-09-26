@@ -14,7 +14,7 @@
   </form>
 </div>
 
-@if (movies$ | async; as movies) {
+@if (movies.length > 0) {
   <div class="movie-results">
     @for (movie of movies; track movie.imdbID) {
       <div class="movie-item">

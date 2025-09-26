@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../movie-service/movie-service';
-import { Observable, of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 interface Movie {
@@ -29,12 +28,12 @@ interface Movie {
 
 export class MovieSearch {
   query: string = '';
-  movies$: Observable<Movie[]> = of([]);
+  movies: Movie[] = [];
 
   constructor(private readonly movieService: MovieService) {}
 
-  getSearchResults() {
-    this.movies$ = this.movieService.searchMovie(this.query);
+  async getSearchResults() {
+    this.movies = await this.movieService.searchMovie(this.query);
   }
 
 }
